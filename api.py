@@ -18,6 +18,7 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 
 @app.get("/health")
+# returns chunks -> check api works
 def health():
     return {
         "chunks": store._collection.count()
@@ -25,7 +26,7 @@ def health():
 
 @app.get("/search")
 def search(query: str, k_neighbours: int = 4):
-    # find the source within the vectore store
+    # find the source within the vector store
     hits = rag.retrieve(store, query, k_neighbours)
     res = []
     for doc, score in hits:
@@ -43,6 +44,7 @@ def search(query: str, k_neighbours: int = 4):
 @app.get("/ask")
 @limiter.limit("3/minute")
 def ask(request: Request, query: str, k_neighbours: int = 4):
+    # calls rag.ask which send the query and returns an output after llm has processed
     answer, hits = rag.ask(store, query, k_neighbours)
     return {
         "query": query,
