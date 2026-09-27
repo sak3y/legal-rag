@@ -109,6 +109,8 @@ def index(urls=ACT_URLS, rebuild=False):
     # Fetches every Act, turns them into chunks, embeds them, and saves them to the database
     
     store = get_store()
+
+    # rebuild vector store option
     if rebuild:
         store.delete_collection()
         store = get_store()
@@ -121,7 +123,7 @@ def index(urls=ACT_URLS, rebuild=False):
             continue
         docs += split(root, url)
 
-    # ran into issues sending the entire doc to ollama, send as batch instead
+    # ran into issues sending the entire doc to the vector store, send as batch instead
     batch = 100
     for i in range(0, len(docs), batch):
         part = docs[i:i + batch]
@@ -165,7 +167,7 @@ def ask(store, question, k=4):
     return answer, hits
 
 
-def evaluate(store, k=4, path="tests/test.json"):
+def evaluate(store, k=4, path="tests/test_full.json"):
     # Runs every test question and counts how often the right section came back in the top k
     cases = json.load(open(path))
     hits_at_k = 0
