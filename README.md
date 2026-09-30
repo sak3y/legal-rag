@@ -93,7 +93,9 @@ Sources come back with every answer, each carrying the URI it was built from, so
 
 Ten questions, each paired with the section that should answer it, scored on whether that section appears in the top k. The set lives in `tests/test.json` and runs with `evaluate(store)`.
 
-**hit@4: 10/10.** Questions are phrased the way a member of the public would ask ("is hacking into a computer illegal", "is taking someone's car without permission a crime") rather than in statutory language, so the score reflects retrieval bridging plain English to legal drafting. An earlier corpus scored 9/10, with the failure traced to near-identical Schedule paragraphs crowding out the section that answered the question.
+**Matches (K = 4) is 22/34 ** Questions are phrased in every day lanauage ("is hacking into a computer illegal", "is taking someone's car without permission a crime") rather than in statutory language, so the score reflects retrieval bridging plain English to legal drafting. 
+
+Earlier corpus scored 10/10, with the failure traced to near-identical Schedule paragraphs crowding out the section that answered the question.
 
 ## Tests
 
@@ -121,6 +123,7 @@ The published XML is well structured but not clean. Five issues surfaced during 
 - Vector search only. Exact-term lookups ("what does section 9 say") would benefit from hybrid keyword search.
 - Tests run against a hand-written sample rather than a captured API response, so a change to the published XML format would break the pipeline without failing a test.
 - Not deployed. It runs locally under Compose but has no public instance.
+- Success of queries in the test is 64% right 
 
 ## Credits
 
