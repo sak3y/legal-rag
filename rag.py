@@ -167,6 +167,13 @@ def ask(store, question, k=4):
     return answer, hits
 
 
+"""
+    How evaluation works:
+    Currently it's:
+        Get the four closest embeddings for the prompt
+        Check if they returned a URL that matches the expeceted label in the query
+        If at least one has been matches, then it passes
+"""
 def evaluate(store, k=4, path="tests/test_full.json"):
     # Runs every test question and counts how often the right section came back in the top k
     cases = json.load(open(path))
@@ -179,7 +186,7 @@ def evaluate(store, k=4, path="tests/test_full.json"):
         print(f"{'PASS' if found else 'FAIL'}  {case['question']}")
         if not found:
             print(f"        expected {case['note']}")
-    print(f"\nhit@{k}: {hits_at_k}/{len(cases)}")
+    print(f"\nMatches for K = {k}: {hits_at_k}/{len(cases)}")
     return hits_at_k, len(cases)
 
 

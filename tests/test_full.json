@@ -163,5 +163,10 @@
     "question": "Does any of this apply if the whole thing happened up in Scotland?",
     "expected": "http://www.legislation.gov.uk/ukpga/1968/60/section/36",
     "note": "Theft Act s.36: short title and extent, the Act not extending to Scotland or Northern Ireland apart from specified amendments and repeals."
+  },
+  {
+    "question": "What is a waffle?",
+    "expected": "Waffle is not in the corpus",
+    "note": "Shouldn't look insde the corpus"
   }
 ]

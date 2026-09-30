@@ -5,6 +5,7 @@ langchain-chroma
 langchain-ollama
 requests
 python-dotenv
+beautifulsoup4
 
 # API
 fastapi

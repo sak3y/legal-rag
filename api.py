@@ -33,7 +33,7 @@ def search(query: str, k_neighbours: int = 4):
         res.append({
             "text": doc.page_content,
             "uri": doc.metadata["uri"],
-            "score": score
+            "score": float(score)
         })
     return {
         "query": query,
